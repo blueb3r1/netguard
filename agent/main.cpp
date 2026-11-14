@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <set>
 #include <thread>
+#include <mutex>
+#include "auth_test.cpp"
 using namespace std;
 
 string decode_addr(const string &hex_addr)
@@ -23,10 +25,12 @@ string decode_addr(const string &hex_addr)
     return to_string(b1) + '.' + to_string(b2) + '.' + to_string(b3) + '.' + to_string(b4) + ':' + to_string(port);
 }
 
-set<string> scan_listen_port(){
+set<string> scan_listen_port()
+{
     set<string> active_ports;
     ifstream fin("/proc/net/tcp");
-    if (!fin.is_open()){
+    if (!fin.is_open())
+    {
         return active_ports;
     }
     string line;
@@ -44,17 +48,28 @@ set<string> scan_listen_port(){
     return active_ports;
 }
 
-int main()
+void monitor_port()
 {
     set<string> known_ports = scan_listen_port();
-    while(true){
+    while (true)
+    {
         this_thread::sleep_for(chrono::seconds(3));
         set<string> current_ports = scan_listen_port();
-        for (const string &addr : current_ports){
-            if (known_ports.find(addr) == known_ports.end()){
+        for (const string &addr : current_ports)
+        {
+            if (known_ports.find(addr) == known_ports.end())
+            {
                 cout << "Phat hien cong la moi: " << addr << "\n";
             }
         }
-    }    
+    }
+}
+
+int main()
+{
+    thread port_thread(monitor_port);
+    thread auth_thread(monitor_auth);
+    port_thread.join();
+    auth_thread.join();
     return 0;
 }

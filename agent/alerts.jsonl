@@ -1,0 +1,8 @@
+{"timestamp": 1794678116
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794679655
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
