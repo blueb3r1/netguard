@@ -3,6 +3,8 @@
 #include <string>
 #include <mutex>
 #include <fstream>
+#include <cstdlib>
+
 // #include <ofstream>
 
 using namespace std;
@@ -28,6 +30,12 @@ void emit_alert(const string &event_type, const string &severity, const string &
     {
         log_file << json << "\n";
     }
+    string cmd = "curl -s -X POST http://127.0.0.1:8000/api/alerts "
+                 "-H 'X-API: netguard_lock_2508' "
+                 "-H 'Content-Type: application/json' "
+                 "-d '" +
+                 json + "' > /dev/null 2>&1 &";
+    system(cmd.c_str());
 }
 
 void monitor_auth()
