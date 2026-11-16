@@ -166,3 +166,11 @@
 , "event_type": "BRUTE_FORCE"
 , "severity": "CRITICAL"
 , "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794848274
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794848407
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
