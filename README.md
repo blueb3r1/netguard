@@ -50,7 +50,8 @@ NetGuard vận hành theo mô hình **Client – Server một chiều**. Các m�
 netguard/
 ├── agent/
 │   ├── main.cpp            # Luồng chính và giám sát port
-│   ├── auth_test.cpp       # Giám sát journal và gửi cảnh báo
+│   ├── .env                # Mẫu khai báo biến môi trường
+    ├── auth_test.cpp       # Giám sát journal và gửi cảnh báo
 │   └── alerts.jsonl        # File backup cục bộ (được tạo khi Agent chạy)
 ├── server/
 │   ├── main.py             # FastAPI Server xử lý API, SQLite và Telegram Bot
