@@ -174,3 +174,23 @@
 , "event_type": "BRUTE_FORCE"
 , "severity": "CRITICAL"
 , "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794929526
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794929632
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794929651
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794929726
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794929823
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
