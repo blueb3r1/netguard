@@ -10,7 +10,8 @@
 using namespace std;
 
 mutex output_mtx;
-
+const string SERVER_URL = getenv("NETGUARD_SERVER_URL");
+const string API_NETGUARD = getenv("NETGUARD_API_KEY");
 void emit_alert(const string &event_type, const string &severity, const string &detail)
 {
     lock_guard<mutex> lock(output_mtx);
@@ -30,10 +31,11 @@ void emit_alert(const string &event_type, const string &severity, const string &
     {
         log_file << json << "\n";
     }
-    string cmd = "curl -s -X POST http://127.0.0.1:8000/api/alerts "
-                 "-H 'X-API: netguard_lock_2508' "
-                 "-H 'Content-Type: application/json' "
-                 "-d '" +
+    string cmd = "curl -s -X POST '" + SERVER_URL + "' "
+                                                    "-H 'X-API: " +
+                 API_NETGUARD + "' "
+                                "-H 'Content-Type: application/json' "
+                                "-d '" +
                  json + "' > /dev/null 2>&1 &";
     system(cmd.c_str());
 }
@@ -64,6 +66,13 @@ void monitor_auth()
                 emit_alert("BRUTE_FORCE", "CRITICAL", "Auth failed 3 times within leak window");
                 count = 0;
             }
+        }
+        else if (line.find("sudo:") != std::string::npos &&
+                 (line.find("user NOT in sudoers") != std::string::npos ||
+                  line.find("COMMAND=/bin/bash") != std::string::npos ||
+                  line.find("COMMAND=/usr/bin/su") != std::string::npos))
+        {
+            emit_alert("PRIV_ESC", "HIGH", "Unauthorized sudo or root shell execution detected");
         }
     }
 }

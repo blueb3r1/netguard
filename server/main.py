@@ -6,6 +6,14 @@ import os
 from dotenv import load_dotenv
 import httpx
 
+class AlertpayLoad(BaseModel):
+    timestamp: int
+    event_type: str
+    severity: str
+    detail: str
+
+alert_db = []
+
 async def send_tg(alert_id: int, time_str: int, alert: AlertpayLoad):
     if not TG_TOKEN or not TG_CHAT_ID:
         return
@@ -24,7 +32,7 @@ async def send_tg(alert_id: int, time_str: int, alert: AlertpayLoad):
         })
 
 load_dotenv()
-API_key = os.getenv("NETGUARD_API_KEY", "netguard_lock_2508")
+API_key = os.getenv("NETGUARD_API_KEY", "")
 TG_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TG_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID" , "")
 
@@ -45,19 +53,10 @@ def ini_db():
 ini_db()
 
 app = FastAPI(title = "Netguard SIEM")
-API_key = "netguard_lock_2508"
 
 def verify_api(x_api: str | None = Header(default = None)):
     if (x_api != API_key):
         raise HTTPException(status_code=401, detail="Unauthorized")
-
-class AlertpayLoad(BaseModel):
-    timestamp: int
-    event_type: str
-    severity: str
-    detail: str
-
-alert_db = []
 
 @app.post("/api/alerts", dependencies=[Depends(verify_api)])
 

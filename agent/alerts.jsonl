@@ -194,3 +194,43 @@
 , "event_type": "BRUTE_FORCE"
 , "severity": "CRITICAL"
 , "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794930204
+, "event_type": "PRIV_ESC"
+, "severity": "HIGH"
+, "detail": "Unauthorized sudo or root shell execution detected"}
+{"timestamp": 1794930268
+, "event_type": "PRIV_ESC"
+, "severity": "HIGH"
+, "detail": "Unauthorized sudo or root shell execution detected"}
+{"timestamp": 1794930271
+, "event_type": "PRIV_ESC"
+, "severity": "HIGH"
+, "detail": "Unauthorized sudo or root shell execution detected"}
+{"timestamp": 1794930308
+, "event_type": "PRIV_ESC"
+, "severity": "HIGH"
+, "detail": "Unauthorized sudo or root shell execution detected"}
+{"timestamp": 1794930402
+, "event_type": "BRUTE_FORCE"
+, "severity": "CRITICAL"
+, "detail": "Auth failed 3 times within leak window"}
+{"timestamp": 1794930408
+, "event_type": "PRIV_ESC"
+, "severity": "HIGH"
+, "detail": "Unauthorized sudo or root shell execution detected"}
+{"timestamp": 1794931531
+, "event_type": "NEW PORT DETECT"
+, "severity": "HIGH"
+, "detail": ""}
+{"timestamp": 1794931534
+, "event_type": "NEW PORT DETECT"
+, "severity": "HIGH"
+, "detail": ""}
+{"timestamp": 1794931537
+, "event_type": "NEW PORT DETECT"
+, "severity": "HIGH"
+, "detail": ""}
+{"timestamp": 1794931719
+, "event_type": "NEW PORT DETECT"
+, "severity": "HIGH"
+, "detail": ""}

@@ -7,6 +7,7 @@
 #include <thread>
 #include <mutex>
 #include "auth_test.cpp"
+#include <vector>
 using namespace std;
 
 string decode_addr(const string &hex_addr)
@@ -27,7 +28,10 @@ string decode_addr(const string &hex_addr)
 
 set<string> scan_listen_port()
 {
+    // vector<string> files = {"/proc/net/tcp", "/proc/net/tcp6"};
     set<string> active_ports;
+
+    // for (auto& i : files){
     ifstream fin("/proc/net/tcp");
     if (!fin.is_open())
     {
@@ -45,6 +49,7 @@ set<string> scan_listen_port()
             active_ports.insert(decode_addr(local_addr));
         }
     }
+//}
     return active_ports;
 }
 
@@ -59,9 +64,10 @@ void monitor_port()
         {
             if (known_ports.find(addr) == known_ports.end())
             {
-                cout << "Phat hien cong la moi: " << addr << "\n";
+                emit_alert("NEW_PORT_DETECTED", "HIGH", "New listening address detected: " + addr);
             }
         }
+        known_ports = current_ports;
     }
 }
 
