@@ -65,39 +65,21 @@ netguard/
 
 ### 1. Khởi chạy Central Server
 
-Di chuyển vào thư mục `server`, cài đặt các thư viện phụ thuộc và tạo tệp cấu hình `.env`:
+Cài đặt các thư viện phụ thuộc.
 
 ```bash
 cd server
-python3 -m venv .venv
-source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
 ```
 
-Cập nhật thông tin cấu hình trong tệp `.env`:
+###### Cập nhật thông tin cấu hình trong tệp `.env`.
 
-```env
-NETGUARD_API_KEY=your_secret_api_key
-TELEGRAM_BOT_TOKEN=your_telegram_bot_token
-TELEGRAM_CHAT_ID=your_telegram_chat_id
-```
+***Chỉ sử dụng khi demo trên local***
 
-`NETGUARD_API_KEY` phải là chuỗi bí mật không rỗng. `TELEGRAM_*` có thể để
-trống nếu không cần gửi cảnh báo Telegram.
-
-Khởi chạy Server (lắng nghe trên toàn bộ giao diện mạng ở cổng `8000`):
+### 2. Khởi chạy Server:
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-### 2. Cấu hình domain local
-
-Trên máy chạy Agent, ánh xạ tên miền nội bộ về địa chỉ IP của Server (dùng `127.0.0.1` nếu chạy thử nghiệm trên cùng một máy, hoặc IP của Server trong mạng LAN/VPN):
-
-```bash
-echo "127.0.0.1   siem.netguard.local" | sudo tee -a /etc/hosts
 ```
 
 ### 3. Biên dịch & Chạy C++ Agent
