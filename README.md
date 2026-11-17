@@ -50,12 +50,12 @@ NetGuard vận hành theo mô hình **Client – Server một chiều**. Các m�
 netguard/
 ├── agent/
 │   ├── main.cpp            # Luồng chính và giám sát port
-│   ├── .env                # Mẫu khai báo biến môi trường
+│   ├── .env.txt            # Mẫu khai báo biến môi trường
     ├── auth_test.cpp       # Giám sát journal và gửi cảnh báo
 │   └── alerts.jsonl        # File backup cục bộ (được tạo khi Agent chạy)
 ├── server/
 │   ├── main.py             # FastAPI Server xử lý API, SQLite và Telegram Bot
-│   ├── .env.example        # Mẫu khai báo biến môi trường
+│   ├── .env.txt        # Mẫu khai báo biến môi trường
 │   └── requirements.txt    # Danh sách thư viện Python cần thiết
 └── README.md
 ```
