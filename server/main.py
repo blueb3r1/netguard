@@ -62,13 +62,7 @@ def verify_api(x_api: str | None = Header(default = None)):
 
 def receiveAlert(alert: AlertpayLoad, bg_tasks: BackgroundTasks):
     time_str = datetime.fromtimestamp(alert.timestamp).strftime('%Y-%m-%d %H:%M:%S')
-    # record = {
-    #     "time": time_str,
-    #     "event_type": alert.event_type,
-    #     "severity": alert.severity,
-    #     "detail": alert.detail
-    # }
-    # alert_db.append(record)
+
     with sqlite3.connect(DB_FILE) as con:
         cur = con.execute(
             "INSERT INTO alerts (timestamp, time_str, event_type, severity, detail) VALUES (?, ?, ?, ?, ?)",
